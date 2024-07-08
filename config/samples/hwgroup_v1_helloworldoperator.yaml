@@ -1,0 +1,9 @@
+apiVersion: hwgroup.mydomain.io/v1
+kind: HelloWorldOperator
+metadata:
+  labels:
+    app.kubernetes.io/name: hello-world-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: helloworldoperator-sample
+spec:
+  # TODO(user): Add fields here

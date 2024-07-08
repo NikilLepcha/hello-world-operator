@@ -1,0 +1,23 @@
+# permissions for end users to view helloworldoperators.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: hello-world-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: helloworldoperator-viewer-role
+rules:
+- apiGroups:
+  - hwgroup.mydomain.io
+  resources:
+  - helloworldoperators
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - hwgroup.mydomain.io
+  resources:
+  - helloworldoperators/status
+  verbs:
+  - get

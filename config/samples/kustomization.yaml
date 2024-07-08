@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- hwgroup_v1_helloworldoperator.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples
