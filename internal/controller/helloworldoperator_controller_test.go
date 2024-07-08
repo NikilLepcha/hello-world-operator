@@ -27,7 +27,7 @@ import (
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	hwgroupv1 "github.com/test/hello-world/api/v1"
+	hwgroupv1 "github.com/NikilLepcha/hello-world-operator/api/v1"
 )
 
 var _ = Describe("HelloWorldOperator Controller", func() {

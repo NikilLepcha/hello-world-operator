@@ -24,7 +24,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/test/hello-world/test/utils"
+	"github.com/NikilLepcha/hello-world-operator/test/utils"
 )
 
 const namespace = "hello-world-operator-system"

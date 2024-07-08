@@ -32,7 +32,7 @@ import (
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	hwgroupv1 "github.com/test/hello-world/api/v1"
+	hwgroupv1 "github.com/NikilLepcha/hello-world-operator/api/v1"
 	// +kubebuilder:scaffold:imports
 )
 

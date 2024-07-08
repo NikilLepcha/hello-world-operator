@@ -34,8 +34,8 @@ import (
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 
-	hwgroupv1 "github.com/test/hello-world/api/v1"
-	"github.com/test/hello-world/internal/controller"
+	hwgroupv1 "github.com/NikilLepcha/hello-world-operator/api/v1"
+	"github.com/NikilLepcha/hello-world-operator/internal/controller"
 	// +kubebuilder:scaffold:imports
 )
 
