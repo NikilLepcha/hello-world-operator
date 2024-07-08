@@ -18,6 +18,7 @@ package controller
 
 import (
 	"context"
+	"fmt"
 
 	hwgroupv1 "github.com/NikilLepcha/hello-world-operator/api/v1"
 	corev1 "k8s.io/api/core/v1"
@@ -64,13 +65,22 @@ func (r *HelloWorldOperatorReconciler) Reconcile(ctx context.Context, req ctrl.R
 	}
 
 	// Define the desired ConfigMap object
+	configData := fmt.Sprintf(`
+	global:
+	  scrape_interval: %s
+	scrape_configs:
+	  - job_name: 'prometheus'
+		static_configs:
+		- targets: ['localhost:9090']
+	`, helloWorld.Spec.ScrapeInterval)
+	
 	cm := &corev1.ConfigMap{
 		ObjectMeta: metav1.ObjectMeta{
-			Name:      "hello-world-config",
-			Namespace: req.Namespace,
+			Name:      "hw-prom-config",
+			Namespace: helloWorld.Namespace,
 		},
 		Data: map[string]string{
-			"message": helloWorld.Spec.Message,
+			"prometheus.yml": configData,
 		},
 	}
 
@@ -83,7 +93,8 @@ func (r *HelloWorldOperatorReconciler) Reconcile(ctx context.Context, req ctrl.R
 	found := &corev1.ConfigMap{}
 	err = r.Get(ctx, types.NamespacedName{Name: cm.Name, Namespace: cm.Namespace}, found)
 	if err != nil && errors.IsNotFound(err) {
-		logger.Info("Creating ConfigMap", "ConfigMap.Name", cm.Name)
+		logger.Info("ConfigMap not found")
+		logger.Info("Creating New ConfigMap", "ConfigMap.Name", cm.Name)
 		err = r.Create(ctx, cm)
 		if err != nil {
 			return ctrl.Result{}, err
@@ -93,6 +104,7 @@ func (r *HelloWorldOperatorReconciler) Reconcile(ctx context.Context, req ctrl.R
 	} else {
 		// Update the existing ConfigMap if necessary
 		if !isEqualConfigMap(cm, found) {
+			logger.Info("Configuration in actual ConfigMap is different from desired config")
 			logger.Info("Updating ConfigMap", "ConfigMap.Name", cm.Name)
 			found.Data = cm.Data
 			err = r.Update(ctx, found)

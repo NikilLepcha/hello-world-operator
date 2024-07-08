@@ -28,8 +28,7 @@ type HelloWorldOperatorSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Message is an example field of HelloWorldOperator. Edit helloworldoperator_types.go to remove/update
-	Message string `json:"foo,omitempty"`
+	ScrapeInterval string `json:"scrapeInterval,omitempty"`
 }
 
 // HelloWorldOperatorStatus defines the observed state of HelloWorldOperator
