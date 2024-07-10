@@ -40,9 +40,7 @@ spec:
           spec:
             description: HelloWorldOperatorSpec defines the desired state of HelloWorldOperator
             properties:
-              foo:
-                description: Message is an example field of HelloWorldOperator. Edit
-                  helloworldoperator_types.go to remove/update
+              scrapeInterval:
                 type: string
             type: object
           status:
